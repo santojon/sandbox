@@ -16,7 +16,10 @@
 						class="btn btn-md btn-default pull-right mLeft10">
 					Download my code <span class="glyphicon glyphicon-download-alt"></span>
 				</a>
-				<button id="btn-bhdr-doc" class="btn btn-md btn-default pull-right">
+				<button id="btn-doc" class="btn btn-md btn-default pull-right mLeft10">
+					Show Instructions <span class="glyphicon glyphicon-book"></span>
+				</button>
+				<button id="btn-bhdr-doc" class="btn btn-md btn-default pull-right mLeft10">
 					Show Bhdr code
 				</button>
 			</h2>
@@ -31,6 +34,29 @@
 
 			<div id="bhdr-container" class="container">
 				<div id="bhdr-text" disabled="true"></div>
+			</div>
+
+			<div id="i-container" class="container">
+				<div id="i-text">
+					<h5>The lib is pre-loaded.</h5>
+					<h5>Here we have too a class called 'Sandbox' with properties for each type:</h5>
+					<p id="i-sand"></p>
+					<h5>With same names of types.</h5>
+					<p>
+						<h5>Example:</h5>
+						<pre>
+							<code class="language-js">
+new Sandbox({
+    string: 's',
+    number: 0,
+    object: new Object(),
+    list: [],
+    boolean: true,
+    function: function() {}
+});</code>
+						</pre>
+					</p>
+				</div>
 			</div>
 
 			<div class="container">

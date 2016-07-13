@@ -14,8 +14,9 @@ pages.Sandbox = function(params) {
         // grant all is visible
         unhideAll();
 
-        // but hide main lib code
+        // but hide main lib code and instructions
         document.getElementById('bhdr-container').hidden = true;
+        document.getElementById('i-container').hidden = true;
 
         // initialize editor and things
         var editor = init();
@@ -31,6 +32,22 @@ pages.Sandbox = function(params) {
             } else {
                 bhdrDiv.hidden = true;
                 me.innerHTML = 'Show Bhdr code';
+            }
+        };
+
+        // set funcion of 'instructions' button
+        document.getElementById('btn-doc').onclick = function() {
+            var iDiv = document.getElementById('i-container');
+            var me = document.getElementById('btn-doc');
+
+            if (iDiv.hidden) {
+                iDiv.hidden = false;
+                me.innerHTML =
+                    'Hide Instructions <span class="glyphicon glyphicon-book"></span>';
+            } else {
+                iDiv.hidden = true;
+                me.innerHTML =
+                    'Show Instructions <span class="glyphicon glyphicon-book"></span>';
             }
         };
     }

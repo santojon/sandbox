@@ -23,6 +23,17 @@ with (SandboxService) {
                 '<pre class="line-numbers"><code class="language-'
                     + (lang || 'js') + '">' + Bhdr + '</code></pre>';
 
+            // Sandbox prop names
+            document.getElementById('i-sand').innerHTML =
+                    new Sandbox({
+                        string: 's',
+                        number: 0,
+                        object: new Object(),
+                        list: [],
+                        boolean: true,
+                        function: function() {}
+                    }).getProps();
+
             // and highlight it
             Prism.highlightAll();
 
