@@ -19,6 +19,10 @@
 	margin-bottom: 10px !important;
 }
 
+.y {
+	color: yellow !important;
+}
+
 #editor {
 	min-height: 350px !important;
 }

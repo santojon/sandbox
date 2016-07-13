@@ -8,6 +8,8 @@ with (SandboxService) {
             var flask = new CodeFlask();
             flask.run('#editor', { language: lang || 'javascript' });
 
+            var fst = true;
+
             // setup code runner
             flask.onUpdate(function(code) {
                 // add code to download
@@ -15,7 +17,16 @@ with (SandboxService) {
                     'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(code);
 
                 // try to run it
-                document.getElementById('console').innerHTML = eval(code);
+                if (fst) {
+                    fst = false;
+                    document.getElementById('console').innerHTML = '<span class="y"><b>$:</b></span>   ' +
+                        eval(code.replace(/console\.log/g, 'SandboxController._console'));
+                } else {
+                    document.getElementById('console').innerHTML =
+                        document.getElementById('console').innerHTML + '<br>' +
+                            '<span class="y"><b>$:</b></span>   ' +
+                                eval(code.replace(/console\.log/g, 'SandboxController._console'));
+                }
             });
 
             // setup Bhdr code visualization
@@ -38,6 +49,17 @@ with (SandboxService) {
             Prism.highlightAll();
 
             return flask;
+        },
+        /**
+         * Function responsible to replace console.log
+         */
+        _console: function(thing) {
+            console.log(thing);
+            document.getElementById('console').innerHTML =
+                document.getElementById('console').innerHTML + '<br>' +
+                    '<span class="y"><b>$:</b></span>   ' + thing.toString();
+
+            return thing.toString();
         }
     };
 }
