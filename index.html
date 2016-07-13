@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Libs Sandbox</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<script type="text/javascript" src="lib/base.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+
+		<div class="container" hidden="true">
+			<h2 id="title" class="container">
+				Libs Sandbox <small>(Testing Bhdr)</small>
+				<a href="data:application/octet-stream;charset=utf-8,"
+					download="code.js" id="btn-my"
+						class="btn btn-md btn-default pull-right mLeft10">
+					Download my code <span class="glyphicon glyphicon-download-alt"></span>
+				</a>
+				<button id="btn-bhdr-doc" class="btn btn-md btn-default pull-right">
+					Show Bhdr code
+				</button>
+			</h2>
+
+			<h5 class="container">
+				Send reports, errors, questions and issues to
+				<a href="mailto:santojon5@gmail.com?Subject=Bhdr%20test%20report">
+					Jonathan Santos
+				</a>
+				(santojon5@gmail.com) <code>[add your code, please!]</code>.
+			</h5>
+
+			<div id="bhdr-container" class="container">
+				<div id="bhdr-text" disabled="true"></div>
+			</div>
+
+			<div class="container">
+				<div id="editor" class="form-control">var pool = new Bhdr();
+
+/**
+ * This is a comment
+ * @param param: this is aparam in comment
+ */
+function mapAndShowSandbox() {
+    pool.map(Sandbox);
+    new Sandbox({ string: 'test' }).save();
+
+    return pool.exportAs('json');
+}
+
+// this is a inline comment. press 'Enter' here and run it now!
+mapAndShowSandbox();</div>
+			</div>
+
+			<div class="container">
+				<div id="console" class="form-control" disabled="true">
+					Runtime console (press <code>'Enter'</code> in editor above to submit)
+					<small><code>[it will run all and show the last line result]</code></small>.
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

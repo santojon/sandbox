@@ -1,0 +1,32 @@
+with (SandboxService) {
+    var SandboxController = {
+        /**
+         * Create editor container
+         */
+        init: function(lang) {
+            // setupe editor
+            var flask = new CodeFlask();
+            flask.run('#editor', { language: lang || 'javascript' });
+
+            // setup code runner
+            flask.onUpdate(function(code) {
+                // add code to download
+                document.getElementById('btn-my').href =
+                    'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(code);
+
+                // try to run it
+                document.getElementById('console').innerHTML = eval(code);
+            });
+
+            // setup Bhdr code visualization
+            document.getElementById('bhdr-text').innerHTML =
+                '<pre class="line-numbers"><code class="language-'
+                    + (lang || 'js') + '">' + Bhdr + '</code></pre>';
+
+            // and highlight it
+            Prism.highlightAll();
+
+            return flask;
+        }
+    };
+}
