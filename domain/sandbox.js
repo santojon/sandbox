@@ -19,13 +19,13 @@ classLoader.create('Sandbox: {\
  */
 Sandbox.prototype.getProps = function() {
 	var db = this;
-	var htmlStr = '';
+	var htmlStr = '<ul>';
 
 	Object.keys(db).forEach(
 		function(key) {
-			htmlStr = htmlStr + '<p><code>' + key + '</code></p>';
+			htmlStr = htmlStr + '<li><code>' + key + '</code></li>';
 		}
 	);
 
-	return htmlStr;
+	return htmlStr + '</ul>';
 };
