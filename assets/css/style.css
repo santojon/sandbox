@@ -20,13 +20,14 @@
 }
 
 #editor {
-	height: 330px !important;
+	height: 350px !important;
 }
 
 #console {
-	height: 120px !important;
+	height: 130px !important;
 	background-color: black !important;
 	color: white !important;
+	margin-top: -15px !important;
 }
 
 #bhdr-text {
