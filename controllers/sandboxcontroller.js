@@ -57,9 +57,9 @@ with (SandboxService) {
             console.log(thing);
             document.getElementById('console').innerHTML =
                 document.getElementById('console').innerHTML + '<br>' +
-                    '<span class="y"><b>$:</b></span>   ' + thing.toString();
+                    '<span class="y"><b>$:</b></span>   ' + thing;
 
-            return thing.toString();
+            return thing;
         }
     };
 }
