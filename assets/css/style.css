@@ -23,8 +23,20 @@
 	color: yellow !important;
 }
 
+.r {
+	color: red !important;
+}
+
+.g {
+	color: lime !important;
+}
+
+.b {
+	color: aqua !important;
+}
+
 #editor {
-	min-height: 350px !important;
+	min-height: 330px !important;
 }
 
 #console {

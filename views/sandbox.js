@@ -11,15 +11,10 @@ pages.Sandbox = function(params) {
             Utils
         )
     ) {
-        // grant all is visible
-        unhideAll();
-
-        // but hide main lib code and instructions
-        document.getElementById('bhdr-container').hidden = true;
-        document.getElementById('i-container').hidden = true;
+        var fst = true;
 
         // initialize editor and things
-        var editor = init();
+        var editor = init(fst);
 
         // set funcion of 'show code' button
         document.getElementById('btn-bhdr-doc').onclick = function() {
@@ -50,5 +45,15 @@ pages.Sandbox = function(params) {
                     'Show Instructions <span class="glyphicon glyphicon-book"></span>';
             }
         };
+
+        // set funcion of 'clear console' button
+        setClearing();
+
+        // grant all is visible
+        unhideAll();
+
+        // but hide main lib code and instructions
+        document.getElementById('bhdr-container').hidden = true;
+        document.getElementById('i-container').hidden = true;
     }
 };
