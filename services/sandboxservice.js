@@ -5,7 +5,7 @@ var SandboxService = {
     doOnUpdate: function(code, fst) {
         // button
         var b = '\
-            <button id="clr-cons" class="btn btn-md btn-default pull-right" title="Clear console">\
+            <button id="clr-cons" class="btn btn-sm btn-default pull-right" title="Clear console">\
 					<span class="glyphicon glyphicon-erase"></span>\
 				</button>\
         ';
@@ -46,7 +46,7 @@ var SandboxService = {
     setConsoleClearing: function() {
         document.getElementById('clr-cons').onclick = function() {
             document.getElementById('console').innerHTML = '\
-                <button id="clr-cons" class="btn btn-md btn-default pull-right" title="Clear console">\
+                <button id="clr-cons" class="btn btn-sm btn-default pull-right" title="Clear console">\
 						<span class="glyphicon glyphicon-erase"></span>\
 					</button>\
             ';

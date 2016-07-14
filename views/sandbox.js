@@ -46,6 +46,13 @@ pages.Sandbox = function(params) {
             }
         };
 
+        // pin console button action
+        document.getElementById('pin-cons').onclick = function() {
+            document.getElementById('console').classList += ' console';
+            document.getElementById('cons-cont').classList -= 'container';
+            this.parentNode.removeChild(this);
+        };
+
         // set funcion of 'clear console' button
         setClearing();
 

@@ -1,6 +1,10 @@
 .container {
-	margin-top: 10px !important;
-	margin-bottom: 10px !important;
+	width: 100% !important;
+}
+
+.panel.panel-default {
+	max-height: 420px !important;
+	overflow: auto !important;
 }
 
 .mRight10 {
@@ -35,8 +39,14 @@
 	color: aqua !important;
 }
 
+.console {
+	position: fixed !important;
+    bottom: 0!important;
+    width: 100% !important;
+}
+
 #editor {
-	min-height: 330px !important;
+	min-height: 380px !important;
 }
 
 #console {
