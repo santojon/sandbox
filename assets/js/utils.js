@@ -32,5 +32,11 @@ var Utils = {
            		}
             }
         }
+    },
+    /**
+     * Verifies if element contains class
+     */
+     hasClass: function(element, cls) {
+        return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
     }
 };

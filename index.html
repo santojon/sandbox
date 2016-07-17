@@ -3,52 +3,69 @@
 	<head>
 		<title>Libs Sandbox</title>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" href="assets/css/loader.css" type="text/css" />
 	</head>
 	<body>
 		<script type="text/javascript" src="lib/base.js"></script>
-		<script type="text/javascript" src="app.js"></script>
+		<script type="text/javascript">
+			// Loads all needed things to run app. It need 'base.js' loaded to work
+			with (Base) {
+			    progressiveLoad(['conf.js', 'loader.js'], loadScript);
+			}
+		</script>
+		<?php
+			// php code goes here
+		?>
 
-		<div class="container" hidden="true">
-			<h2 id="title">
+		<div class="box" hidden="true">
+		  <div id="header" class="header container">
+		    <h2 id="title">
 				Libs Sandbox <small>(Testing Bhdr)</small>
+				<button id="btn-full"
+					class="btn btn-md btn-info pull-right mLeft10"
+						title="Expand panels">
+					<span class="glyphicon glyphicon-resize-full"></span>
+				</button>
 				<a href="data:application/octet-stream;charset=utf-8,"
 					download="code.js" id="btn-my"
-						class="btn btn-md btn-default pull-right mLeft10"
+						class="btn btn-md btn-primary pull-right mLeft10"
 							title="Download my code">
 					<span class="glyphicon glyphicon-download-alt"></span>
 				</a>
-				<button id="btn-bhdr-doc" class="btn btn-md btn-default pull-right mLeft10">
-					Show Bhdr code
+				<button id="btn-bhdr-doc" class="btn btn-md btn-warning pull-right mLeft10"
+					title="Show Bhdr code">
+					<span class="fa fa-code"></span>
 				</button>
-				<button id="btn-doc" class="btn btn-md btn-default pull-right mLeft10">
-					Show Instructions <span class="glyphicon glyphicon-book"></span>
+				<button id="btn-doc" class="btn btn-md btn-danger pull-right mLeft10"
+					title ="Show Instructions">
+					<span class="fa fa-life-ring"></span>
 				</button>
-				<a href="beta/" class="btn btn-md btn-danger pull-right mLeft10"
-					title="Go to Beta!">
-					<b>β</b> <span class="glyphicon glyphicon-console"></span>
+				<a href="beta/" class="btn btn-md btn-success pull-right mLeft10"
+					title="Go to experimental version!" disabled="disabled">
+					<span class="fa fa-flask"></span>
 				</a>
 			</h2>
 
 			<h5 hidden="true">
 				Send reports, errors, questions and issues to
-				<a href="mailto:santojon5@gmail.com?Subject=Bhdr%20test%20report">
+				<a title="mailto:santojon5@gmail.com" href="mailto:santojon5@gmail.com?Subject=Bhdr%20test%20report">
 					Jonathan Santos
-				</a>
-				(santojon5@gmail.com) <code>[add your code, please!]</code>.
+				</a><code>[add your code, please!]</code>.
 			</h5>
+		  </div>
 
-			<div id="i-container" hidden="true">
-				<div class="panel panel-default">
-					<div class="panel-heading"><b>Instructions <span class="glyphicon glyphicon-book"></span></b></div>
-						<div id="i-text"class="panel-body">
-							<h5>The lib is pre-loaded.</h5>
-							<h5>Here we have too a class called 'Sandbox' with properties for each type:</h5>
-							<p id="i-sand"></p>
-							<h5>With same names of types.</h5>
-							<p>
-								<h5>Example:</h5>
-								<pre>
-									<code class="language-js">
+		  <div id="content" class="content container">
+			<div id="i-container" class="panel panel-default">
+				<div class="panel-heading"><b>Instructions</b></div>
+					<div id="i-text"class="panel-body">
+						<h4>The lib is pre-loaded.</h4>
+						<h6>Here we have too a class called 'Sandbox' with properties for each type:</h6>
+						<p class="form-control" id="i-sand"></p>
+						<h5>With same names of types.</h5>
+						<p>
+							<h6>Example:</h6>
+							<pre>
+								<code class="language-js">
 new Sandbox({
     string: 's',
     number: 0,
@@ -57,71 +74,56 @@ new Sandbox({
     boolean: true,
     function: function() {}
 });</code>
-								</pre>
-							</p>
-							<h5>
-								Feel free to use the console functions related to log:
-								<p><small>
-									(it will change the colors of the <b>'$:'</b> in console)
-								</small></p>
-							</h5>
-							<pre>
-									<code class="language-js">
+							</pre>
+						</p>
+						<h5>
+							Feel free to use the console functions related to log:
+							<p><small>
+								(it will change the colors of the <b>'$:'</b> in console)
+							</small></p>
+						</h5>
+						<pre>
+							<code class="language-js">
 console.log();
 console.warn();
 console.error();</code>
-								</pre>
-								<h5>
-									Use console.<b>*</b> functions to log data to console with <code>100%</code> of precision.
-									<p><small>
-										(another forms can fail to log the data to console)
-									</small></p>
-								</h5>
-						</div>
+						</pre>
+						<h5>
+							Use console.<b>*</b> functions to log data to console with <code>100%</code> of precision.
+							<p><small>
+								(another forms can fail to log the data to console)
+							</small></p>
+						</h5>
 					</div>
 				</div>
+
+			<div id="bhdr-container" class="panel panel-default">
+				<div class="panel-heading"><b>Bhdr code</b></div>
+				<div id="bhdr-text" class="panel-body" disabled="true"></div>
 			</div>
 
-			<div id="bhdr-container" class="container" hidden="true">
-				<div class="panel panel-default">
-					<div class="panel-heading"><b>Bhdr code</b></div>
-						<div id="bhdr-text" class="panel-body" disabled="true"></div>
-					</div>
-				</div>
+			<div id="ed" class="panel panel-default">
+				<div class="panel-heading"><b>Editor</b></div>
+				<div id="editor" class="panel-body"></div>
 			</div>
+		  </div>
 
-			<div class="container" hidden="true">
-				<div class="panel panel-default">
-					<div class="panel-heading"><b>Editor</b></div>
-					<div id="editor" class="panel-body">// this is an inline comment.
-var pool = new Bhdr();
+		  <div class="container">
+		  	<div id="console" class="footer form-control" disabled="true"></div>
+		  </div>
+		</div>
 
-/**
- * This is a comment
- * @param param: this is aparam in comment
- */
-function mapAndShowSandbox() {
-    pool.map(Sandbox);
-    new Sandbox({ string: 'test' }).save();
-
-    return 'code from user (last line): &ltb&gt&ltsmall&gt&ltcode&gt' + pool.exportAs('json')  + '&lt/code&gt&lt/small&gt&lt/b&gt';
-}
-
-console.log('info.');
-console.warn('warning!');
-console.error('error!!!');
-mapAndShowSandbox();</div>
-				</div>
-			</div>
-
-			<div id="cons-cont" class="container" hidden="true">
-				<div id="console" class="form-control" disabled="true">
-					<button id="clr-cons" class="btn btn-sm btn-default pull-right" title="Clear console">
-						<span class="glyphicon glyphicon-erase"></span>
-					</button>
-					Runtime console (press any key in editor above to run).
-				</div>
-			</div>
+		<div id="loader" class="sk-cube-grid">
+		  <div class="sk-cube sk-cube1"></div>
+		  <div class="sk-cube sk-cube2"></div>
+		  <div class="sk-cube sk-cube3"></div>
+		  <div class="sk-cube sk-cube4"></div>
+		  <div class="sk-cube sk-cube5"></div>
+		  <div class="sk-cube sk-cube6"></div>
+		  <div class="sk-cube sk-cube7"></div>
+		  <div class="sk-cube sk-cube8"></div>
+		  <div class="sk-cube sk-cube9"></div>
+		  <div><small>Loading sandbox</small></div>
 		</div>
 	</body>
 </html>

@@ -1,0 +1,24 @@
+/* console related */
+.y {
+	color: yellow !important;
+}
+
+.r {
+	color: red !important;
+}
+
+.g {
+	color: lime !important;
+}
+
+.b {
+	color: aqua !important;
+}
+
+#console {
+	height: 140px !important;
+	background-color: black !important;
+	color: white !important;
+	overflow: auto;
+	width: auto !important;
+}

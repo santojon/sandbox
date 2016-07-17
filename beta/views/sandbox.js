@@ -98,11 +98,11 @@ pages.Sandbox = function(params) {
             var con = document.getElementById('content');
 
             var ed = document.getElementById(editor.elem.substr(1));
-            var i = document.getElementById('i-container');
-            var b = document.getElementById('bhdr-container');
+            var i = document.getElementById('i-text');
+            var b = document.getElementById('bhdr-text');
 
             // if is fullscreen
-            if (hasClass(h, 'full')) {
+            if (editor.isFull) {
                 h.classList.remove('full');
                 con.classList.remove('full');
 
@@ -120,12 +120,18 @@ pages.Sandbox = function(params) {
                 me.title = 'Shrink panels';
                 me.innerHTML = '<span class="glyphicon glyphicon-resize-small"></span>';
 
-                var newH = con.offsetHeight.toString() + 'px';
+                var newH = (con.offsetHeight - 48).toString() + 'px';
                 ed.style.height = newH;
                 i.style.height = newH;
                 b.style.height = newH;
             }
+
+            editor.isFull = !editor.isFull;
         };
+
+        // test
+        document.getElementById('btn-full').onclick();
+        document.getElementById('btn-full').onclick();
 
         // set funcion of 'clear console' button
         setClearing(editor.console);
