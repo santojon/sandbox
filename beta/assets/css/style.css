@@ -1,0 +1,32 @@
+/* main view disposition */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.box .header {
+  flex: 0 1 auto;
+}
+
+.box .content {
+  flex: 1 1 auto;
+}
+
+.box .footer {
+  	flex: 0 1 140px;
+}
+
+.container {
+	width: 85% !important;
+}
+
+.container.full {
+	width: 100% !important;
+}
