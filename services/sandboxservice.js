@@ -4,7 +4,14 @@ with (PhpbridgeService) {
          * Save actual status of editor and embedded console
          */
         saveStatus: function(usr) {
-            Editor.find({ user: User.find({ username: usr }) }).delete().save();
+            var editors = Editor.findBy({ user: User.find({ username: usr }) });
+            var last = editors[editors.count() - 1];
+
+            editors.forEach(function(ed) {
+                ed.delete();
+            });
+
+            last.save();
             dump(dataPool.exportAs('json'));
         }
     };

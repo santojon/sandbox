@@ -51,7 +51,8 @@ var appConfig = {
     back: {
         full: ['sandbox'],
         domainClasses: ['user', 'sandconsole', 'editor'],
-        services: ['phpbridge', 'sandbox', 'sandconsole', 'editor']
+        services: ['phpbridge', 'sandbox', 'sandconsole', 'editor'],
+        views: ['login']
     },
     conf: {
         appName: 'Libs Sandbox',

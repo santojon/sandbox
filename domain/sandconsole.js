@@ -21,28 +21,28 @@ SandConsole.prototype.init = function() {
 
     // default text
     if (con.text) {
-        con.elem.innerHTML += con.text;
+        document.getElementById(con.elem).innerHTML += con.text;
         con.isClean = false;
     }
 
     // pin btn
     if (con.pinBtn) {
-        con.elem.innerHTML += con.pinBtn;
+        document.getElementById(con.elem).innerHTML += con.pinBtn;
     }
 
     // saveBtn
     if (con.saveBtn) {
-        con.elem.innerHTML += con.saveBtn;
+        document.getElementById(con.elem).innerHTML += con.saveBtn;
     }
 
     // downloadBtn
     if (con.downloadBtn) {
-        con.elem.innerHTML += con.downloadBtn;
+        document.getElementById(con.elem).innerHTML += con.downloadBtn;
     }
 
     // clean btn
     if (con.cleanBtn) {
-        con.elem.innerHTML += con.cleanBtn;
+        document.getElementById(con.elem).innerHTML += con.cleanBtn;
     }
 
     /**
@@ -58,7 +58,7 @@ SandConsole.prototype.init = function() {
                         .replace(/cons\._console/g, 'console')
                             .replace(/_console/g, 'console');
 
-            self.elem.innerHTML +=
+            document.getElementById(self.elem).innerHTML +=
                 (self.isClean ? '' : '<br>') +
                     '<span class="' + cls + '"><b>$:</b></span>   ' +
                         resultText;

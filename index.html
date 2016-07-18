@@ -14,7 +14,7 @@
 			}
 		</script>
 
-		<div class="box" hidden="true">
+		<div id="Sandbox" class="box" hidden="true">
 		  <div id="header" class="header container">
 		    <h2 id="title">
 				Libs Sandbox <small>(Testing Bhdr)</small>
@@ -43,7 +43,7 @@
 				</a>
 			</h2>
 
-			<h5 hidden="true">
+			<h5>
 				Send reports, errors, questions and issues to
 				<a title="mailto:santojon5@gmail.com" href="mailto:santojon5@gmail.com?Subject=Bhdr%20test%20report">
 					Jonathan Santos
@@ -120,6 +120,20 @@ console.error();</code>
 		  <div class="container">
 		  	<div id="console" class="footer form-control" disabled="true"></div>
 		  </div>
+		</div>
+
+		<div id="Login" class="box" hidden="true">
+			<div class="content container">
+				<h3>Login / Create account: </h3>
+				<div class="input-group">
+				  <span class="input-group-addon">@</span>
+				  <input type="text" id="login-usr" class="form-control" placeholder="username">
+				</div>
+				<button id="login-btn" class="btn btn-md btn-default pull-right mTop10 mLeft10"
+					title ="Login / create account">
+					<span class="fa fa-sign-in"></span>
+				</button>
+			</div>
 		</div>
 
 		<div id="loader" class="sk-cube-grid">
