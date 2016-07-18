@@ -30,3 +30,11 @@
 .m10 {
 	margin: 10px !important;
 }
+
+.mTopM10 {
+	margin-top: -10px !important;
+}
+
+.mTopM5 {
+	margin-top: -5px !important;
+}

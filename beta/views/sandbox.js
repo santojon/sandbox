@@ -91,6 +91,12 @@ pages.Sandbox = function(params) {
             }
         };
 
+        // set save button action
+        document.getElementById('btn-save').onclick = function() {
+            var me = document.getElementById('btn-save');
+            saveCode(editor.text, me);
+        };
+
         // set funcion of 'expand' button
         document.getElementById('btn-full').onclick = function() {
             var me = document.getElementById('btn-full');

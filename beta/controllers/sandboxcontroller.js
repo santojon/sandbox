@@ -2,7 +2,8 @@ with (
     Base.merge(
         SandConsoleService,
         SandboxService,
-        EditorService
+        EditorService,
+        PhpbridgeService
     )
 ) {
     var SandboxController = {
@@ -70,6 +71,12 @@ with (
          */
         setPinning: function(cons) {
             setConsolePinning(cons);
+        },
+        /**
+         * Save to server via PHP
+         */
+        saveCode: function(code, bt) {
+            saveText(code, bt);
         }
     };
 }

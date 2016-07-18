@@ -43,13 +43,15 @@ var appConfig = {
             'lib/dist/codeflask/codeflask.css'
         ],
         externalScripts: [
+            'https://code.jquery.com/jquery-2.2.3.min.js',
+            'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
             'https://use.fontawesome.com/670555b458.js'
         ]
     },
     back: {
         full: ['sandbox'],
         domainClasses: ['sandconsole', 'editor'],
-        services: ['sandbox', 'sandconsole', 'editor']
+        services: ['sandbox', 'sandconsole', 'editor', 'phpbridge']
     },
     conf: {
         appName: 'Libs Sandbox',
