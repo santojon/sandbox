@@ -1,4 +1,5 @@
 // Map class to 'database'
+dataPool.map(User);
 dataPool.map(Sandbox);
 dataPool.map(Editor);
 dataPool.map(SandConsole);
@@ -14,7 +15,8 @@ var Php_bridge = {
     type: 'php',
     base: 'data/php_bridge',
     paths: {
-        save: 'save'
+        save: 'save',
+        dump: 'dump'
     },
     bridgeTo: function(to) {
         with (Php_bridge) {

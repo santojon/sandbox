@@ -50,8 +50,8 @@ var appConfig = {
     },
     back: {
         full: ['sandbox'],
-        domainClasses: ['sandconsole', 'editor'],
-        services: ['sandbox', 'sandconsole', 'editor', 'phpbridge']
+        domainClasses: ['user', 'sandconsole', 'editor'],
+        services: ['phpbridge', 'sandbox', 'sandconsole', 'editor']
     },
     conf: {
         appName: 'Libs Sandbox',
@@ -60,7 +60,7 @@ var appConfig = {
             'lib/dist/bwf.js',
             'lib/dist/prism/prism.js',
             'lib/dist/prism/plugins/line-numbers/prism-line-numbers.min.js',
-            'lib/dist/prism/components/prism-javascript.js',
+            'lib/dist/prism/components/prism-javascript.min.js',
             'lib/dist/codeflask/codeflask.js',
             'data/code.js'
         ],

@@ -6,7 +6,9 @@ classLoader.create('SandConsole: {\
 		    isClean: boolean,\
 		    text: string,\
 		    cleanBtn: string,\
-		    pinBtn: string\
+		    pinBtn: string,\
+		    saveBtn: string,\
+		    downloadBtn: string\
         }');
 
 
@@ -28,6 +30,16 @@ SandConsole.prototype.init = function() {
         con.elem.innerHTML += con.pinBtn;
     }
 
+    // saveBtn
+    if (con.saveBtn) {
+        con.elem.innerHTML += con.saveBtn;
+    }
+
+    // downloadBtn
+    if (con.downloadBtn) {
+        con.elem.innerHTML += con.downloadBtn;
+    }
+
     // clean btn
     if (con.cleanBtn) {
         con.elem.innerHTML += con.cleanBtn;
@@ -41,15 +53,19 @@ SandConsole.prototype.init = function() {
          * Responsible to fill the console with log, warning or error messages
          */
         _c: function(self, thing, cls) {
+            var resultText =
+                    thing.toString()
+                        .replace(/cons\._console/g, 'console')
+                            .replace(/_console/g, 'console');
+
             self.elem.innerHTML +=
                 (self.isClean ? '' : '<br>') +
                     '<span class="' + cls + '"><b>$:</b></span>   ' +
-                        thing.toString()
-                            .replace(/cons\._console/g, 'console')
-                                .replace(/_console/g, 'console');
+                        resultText;
 
             // set console as dirty
             self.isClean = false;
+            self.text += resultText + '\n';
         },
         log: function(thing) {
             console.log(thing);
