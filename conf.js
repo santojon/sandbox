@@ -43,13 +43,15 @@ var appConfig = {
             'lib/dist/codeflask/codeflask.css'
         ],
         externalScripts: [
+            'https://code.jquery.com/jquery-2.2.3.min.js',
+            'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
             'https://use.fontawesome.com/670555b458.js'
         ]
     },
     back: {
         full: ['sandbox'],
-        domainClasses: ['sandconsole', 'editor'],
-        services: ['sandbox', 'sandconsole', 'editor']
+        domainClasses: ['user', 'sandconsole', 'editor'],
+        services: ['phpbridge', 'sandbox', 'sandconsole', 'editor']
     },
     conf: {
         appName: 'Libs Sandbox',
@@ -58,7 +60,7 @@ var appConfig = {
             'lib/dist/bwf.js',
             'lib/dist/prism/prism.js',
             'lib/dist/prism/plugins/line-numbers/prism-line-numbers.min.js',
-            'lib/dist/prism/components/prism-javascript.js',
+            'lib/dist/prism/components/prism-javascript.min.js',
             'lib/dist/codeflask/codeflask.js',
             'data/code.js'
         ],

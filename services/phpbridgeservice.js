@@ -51,25 +51,5 @@ var PhpbridgeService = {
         );
 
         xhr.send(data);
-     },
-     /**
-      * Restore database
-      */
-     getDb: function() {
-         // create, build and send request
-        var xhr = new XMLHttpRequest();
-        xhr.open(
-            'get',
-            Php_bridge.bridgeTo('getDb'),
-            true
-        );
-
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                dataPool.importFrom(xhr.responseText, 'json');
-            }
-        }
-
-        xhr.send(null);
      }
 };

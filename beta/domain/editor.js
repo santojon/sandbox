@@ -24,9 +24,7 @@ Editor.prototype.init = function(lang, onUpdate, params) {
     if (ed.isClean) {
         document.getElementById(ed.elem.substr(1)).innerHTML = '';
     } else {
-        if (ed.text) {
-            document.getElementById(ed.elem.substr(1)).innerHTML = ed.text;
-        }
+        document.getElementById(ed.elem.substr(1)).innerHTML = ed.text;
     }
 
     if (lang) {

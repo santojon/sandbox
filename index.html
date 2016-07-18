@@ -13,9 +13,6 @@
 			    progressiveLoad(['conf.js', 'loader.js'], loadScript);
 			}
 		</script>
-		<?php
-			// php code goes here
-		?>
 
 		<div class="box" hidden="true">
 		  <div id="header" class="header container">
@@ -29,7 +26,7 @@
 				<a href="data:application/octet-stream;charset=utf-8,"
 					download="code.js" id="btn-my"
 						class="btn btn-md btn-primary pull-right mLeft10"
-							title="Download my code">
+							title="Download editor's code">
 					<span class="glyphicon glyphicon-download-alt"></span>
 				</a>
 				<button id="btn-bhdr-doc" class="btn btn-md btn-warning pull-right mLeft10"
@@ -41,7 +38,7 @@
 					<span class="fa fa-life-ring"></span>
 				</button>
 				<a href="beta/" class="btn btn-md btn-success pull-right mLeft10"
-					title="Go to experimental version!">
+					title="Go to beta!">
 					<span class="fa fa-flask"></span>
 				</a>
 			</h2>
@@ -103,7 +100,19 @@ console.error();</code>
 			</div>
 
 			<div id="ed" class="panel panel-default">
-				<div class="panel-heading"><b>Editor</b></div>
+				<div class="panel-heading">
+					<b>
+						Editor
+						<button id="btn-clr-ed" title="Clean editor"
+							class="btn btn-sm btn-default pull-right mTopM5 mLeft10">
+							<span class="fa fa-trash-o "></span>
+						</button>
+						<button id="btn-save" title="Save code to server"
+							class="btn btn-sm btn-default pull-right mTopM5 mLeft10">
+							<span class="fa fa-floppy-o"></span>
+						</button>
+					</b>
+				</div>
 				<div id="editor" class="panel-body"></div>
 			</div>
 		  </div>

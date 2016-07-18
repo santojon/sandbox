@@ -30,7 +30,8 @@ with (
          * Clean the console
          */
         cleanConsole: function(cons) {
-            cons.elem.innerHTML = cons.pinBtn + cons.saveBtn + cons.downloadBtn + cons.cleanBtn;
+            document.getElementById(cons.elem).innerHTML =
+                cons.pinBtn + cons.saveBtn + cons.downloadBtn + cons.cleanBtn;
             SandConsoleService.updatePinBt(document.getElementById('pin-cons'), cons);
             cons.isClean = true;
             cons.text = '';
@@ -43,7 +44,7 @@ with (
             var res = eval(code);
 
             // update console
-            cons.elem.innerHTML +=
+            document.getElementById(cons.elem).innerHTML +=
                 ((res !== undefined) ?
                     (((cons.isClean) ? '' : '<br>') + '<span class="g"><b>$:</b></span>   ' + res) :
                     ''
@@ -58,7 +59,8 @@ with (
          */
         setConsoleClearing: function(cons, usr) {
             document.getElementById('clr-cons').onclick = function() {
-                cons.elem.innerHTML = cons.pinBtn + cons.saveBtn + cons.downloadBtn;
+                document.getElementById(cons.elem).innerHTML =
+                        cons.pinBtn + cons.saveBtn + cons.downloadBtn;
                 var pinBt = document.getElementById('pin-cons');
 
                 SandConsoleService.updatePinBt(pinBt, cons);
@@ -70,6 +72,8 @@ with (
 
                 // update down and save buttons actions
                 SandConsoleService.setConsoleDataSaving(cons, usr);
+
+                saveStatus(usr);
             };
         },
         /**
@@ -79,6 +83,8 @@ with (
             document.getElementById('save-cons').onclick = function() {
                 var me = document.getElementById('save-cons');
                 saveFile(cons.text, usr, 'console', me);
+
+                saveStatus(usr);
             };
 
             // add console text to download
@@ -94,15 +100,16 @@ with (
                 var pinBt = this;
 
                 if (cons.isPinned) {
-                    cons.elem.classList.add('form-control');
-                    cons.elem.parentNode.classList.add('container');
+                    document.getElementById(cons.elem).classList.add('form-control');
+                    document.getElementById(cons.elem).parentNode.classList.add('container');
                 } else {
-                    cons.elem.classList.remove('form-control');
-                    cons.elem.parentNode.classList.remove('container');
+                    document.getElementById(cons.elem).classList.remove('form-control');
+                    document.getElementById(cons.elem).parentNode.classList.remove('container');
                 }
                 cons.isPinned = !cons.isPinned;
 
                 SandConsoleService.updatePinBt(pinBt, cons);
+                saveStatus(usr);
             };
         },
         /**

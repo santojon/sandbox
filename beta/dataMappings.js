@@ -16,7 +16,8 @@ var Php_bridge = {
     base: 'data/php_bridge',
     paths: {
         save: 'save',
-        dump: 'dump'
+        dump: 'dump',
+        getDb: 'getDb'
     },
     bridgeTo: function(to) {
         with (Php_bridge) {
@@ -24,3 +25,10 @@ var Php_bridge = {
         }
     }
 };
+
+
+/**
+ * Import existent databases
+ */
+
+PhpbridgeService.getDb();

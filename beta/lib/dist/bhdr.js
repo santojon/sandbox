@@ -451,6 +451,27 @@ function Bhdr(options) {
             }
 
             return result;
+        },
+        /**
+         * Function used to import 'database' from given type
+         * @param type: the type to import, as string
+         * @param db: the 'database' to import
+         */
+        importFrom: function(db, type) {
+            var result = false;
+
+            switch (type) {
+                case 'javascript':
+                    data = db;
+                    result = true;
+                    break;
+                case 'json':
+                    data = JSON.parse(db);
+                    result = true;
+                    break;
+            }
+
+            return result;
         }
     };
 

@@ -14,14 +14,15 @@ pages.Sandbox = function(params) {
         // initialyze screen
         initScreen();
 
+        var santojon = new User({ username: 'santojon' }).save();
         // the editor
         var editor = new Editor({
+            user: santojon,
             name: 'defaultEditor',
             elem: '#editor',
             flask: new CodeFlask(),
             isFull: false,
-            isClean: true,
-            show: true,
+            isClean: false,
             console: new SandConsole({
                 name: 'defaultConsole',
                 elem: document.getElementById('console'),
@@ -34,12 +35,21 @@ pages.Sandbox = function(params) {
     					</button>',
                 pinBtn: '<button id="pin-cons" class="btn btn-sm btn-default pull-right m5" title="Pin console">\
     						<span class="glyphicon glyphicon-pushpin"></span>\
-    					</button>'
+    					</button>',
+    			saveBtn: '<button id="save-cons" title="Save console text to server"\
+							class="btn btn-sm btn-default pull-right m5">\
+							<span class="fa fa-floppy-o"></span>\
+						</button>',
+				downloadBtn: '<a href="data:application/octet-stream;charset=utf-8,"\
+					            download="console.txt" id="down-cons" title="Download console text"\
+							class="btn btn-sm btn-default pull-right m5">\
+							<span class="glyphicon glyphicon-download-alt"></span>\
+						</a>'
             })
         }).save();
 
         // init console and editor
-        initTools(editor.console, editor, onEditorUpdate);
+        initTools(editor, onEditorUpdate, santojon.username, editor.console);
 
         // set funcion of 'show code' button
         document.getElementById('btn-bhdr-doc').onclick = function() {
@@ -91,6 +101,20 @@ pages.Sandbox = function(params) {
             }
         };
 
+        // set save button action
+        document.getElementById('btn-save').onclick = function() {
+            var me = document.getElementById('btn-save');
+            saveFile(editor.text, 'santojon', 'code', me);
+        };
+
+        // set clear editor button action
+        document.getElementById('btn-clr-ed').onclick = function() {
+            document.getElementById('btn-clr-ed').disabled = true;
+            editor.isClean = true;
+            editor.flask = new CodeFlask();
+            initTools(editor, onEditorUpdate, santojon.username);
+        };
+
         // set funcion of 'expand' button
         document.getElementById('btn-full').onclick = function() {
             var me = document.getElementById('btn-full');
@@ -138,6 +162,9 @@ pages.Sandbox = function(params) {
 
         // set funcion of 'clear console' button
         setPinning(editor.console);
+
+        // set data saving for console
+        setConsoleDataSaving(editor.console, santojon.username);
 
         // grant all is visible
         unhideAll();

@@ -27,6 +27,10 @@ body {
 	width: 85% !important;
 }
 
+.container.hidden {
+  display: none;
+}
+
 .container.full {
 	width: 100% !important;
 }

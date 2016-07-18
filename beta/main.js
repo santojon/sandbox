@@ -2,4 +2,4 @@
  * The main page
  */
 
-pages.Sandbox();
+pages.Login();

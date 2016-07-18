@@ -2,7 +2,8 @@ with (
     Base.merge(
         SandConsoleService,
         SandboxService,
-        EditorService
+        EditorService,
+        PhpbridgeService
     )
 ) {
     var SandboxController = {
@@ -32,7 +33,7 @@ with (
         /**
          * Initialize editor and console
          */
-        initTools: function(sandConsole, editor, doOnUpdate) {
+        initTools: function(editor, doOnUpdate, usr, sandConsole) {
             // init console
             if (sandConsole) sandConsole.init();
 
@@ -42,8 +43,10 @@ with (
                     'javascript',
                     doOnUpdate,
                     {
+                        user: User.find({ username: usr }),
                         isFull: editor.isFull,
-                        text: defCode.asString()
+                        isClean: editor.isClean,
+                        text: editor.text || defCode.asString()
                     }
                 );
 
@@ -56,8 +59,8 @@ with (
         /**
          * Do when editor updates
          */
-        onEditorUpdate: function(code) {
-            doOnUpdate(Editor.find({ name: 'defaultEditor' }), code);
+        onEditorUpdate: function(code, usr) {
+            doOnUpdate(Editor.find({ user: usr }), code, usr);
         },
         /**
          * Set the clear console button action
@@ -70,6 +73,18 @@ with (
          */
         setPinning: function(cons) {
             setConsolePinning(cons);
+        },
+        /**
+         * Set data saving for console
+         */
+        setConsoleDataSaving: function(cons, usr) {
+            setConsoleDataSaving(cons, usr);
+        },
+        /**
+         * Save to server via PHP
+         */
+        saveFile: function(code, usr, type, bt) {
+            saveFile(code, usr, type, bt);
         }
     };
 }

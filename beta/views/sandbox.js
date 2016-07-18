@@ -1,55 +1,53 @@
 pages.Sandbox = function(params) {
     // Get all needed scopes (another js objects like controllers, services etc.)
-    with (
-        /**
-         * The merge function in Base compiles all functions and attributes
-         * in objects into a single one, used to 'import' into this file,
-         * to use its functions and attribues as local ones
-         */
-        Base.merge(
-            SandboxController,
-            Utils
-        )
-    ) {
+    with (SandboxController) {
+        // hide All elements in screen
+        Object.keys(pages).forEach(function(page) {
+            document.getElementById(page).classList.add('hidden');
+        });
+
+        // get current user
+        var currentUser = params.user;
+
         // initialyze screen
         initScreen();
 
-        var santojon = new User({ username: 'santojon' }).save();
         // the editor
-        var editor = new Editor({
-            user: santojon,
-            name: 'defaultEditor',
-            elem: '#editor',
-            flask: new CodeFlask(),
-            isFull: false,
-            isClean: false,
-            console: new SandConsole({
-                name: 'defaultConsole',
-                elem: document.getElementById('console'),
-                isPinned: false,
-                isClean: true,
-                text: 'Runtime console (press any key in editor to run).',
-                cleanBtn: '\
-                    <button id="clr-cons" class="btn btn-sm btn-default pull-right m5" title="Clear console">\
-    						<span class="glyphicon glyphicon-erase"></span>\
-    					</button>',
-                pinBtn: '<button id="pin-cons" class="btn btn-sm btn-default pull-right m5" title="Pin console">\
-    						<span class="glyphicon glyphicon-pushpin"></span>\
-    					</button>',
-    			saveBtn: '<button id="save-cons" title="Save console text to server"\
-							class="btn btn-sm btn-default pull-right m5">\
-							<span class="fa fa-floppy-o"></span>\
-						</button>',
-				downloadBtn: '<a href="data:application/octet-stream;charset=utf-8,"\
-					            download="console.txt" id="down-cons" title="Download console text"\
-							class="btn btn-sm btn-default pull-right m5">\
-							<span class="glyphicon glyphicon-download-alt"></span>\
-						</a>'
-            })
-        }).save();
+        var editor = Editor.find({ user: currentUser }) ||
+            new Editor({
+                user: currentUser,
+                name: currentUser.username + '-defaultEditor',
+                elem: '#editor',
+                flask: new CodeFlask(),
+                isFull: false,
+                isClean: false,
+                console: new SandConsole({
+                    name: currentUser.username + '-defaultConsole',
+                    elem: 'console',
+                    isPinned: false,
+                    isClean: true,
+                    text: 'Runtime console (press any key in editor to run).',
+                    cleanBtn: '\
+                        <button id="clr-cons" class="btn btn-sm btn-default pull-right m5" title="Clear console">\
+        						<span class="glyphicon glyphicon-erase"></span>\
+        					</button>',
+                    pinBtn: '<button id="pin-cons" class="btn btn-sm btn-default pull-right m5" title="Pin console">\
+        						<span class="glyphicon glyphicon-pushpin"></span>\
+        					</button>',
+        			saveBtn: '<button id="save-cons" title="Save console text to server"\
+    							class="btn btn-sm btn-default pull-right m5">\
+    							<span class="fa fa-floppy-o"></span>\
+    						</button>',
+    				downloadBtn: '<a href="data:application/octet-stream;charset=utf-8,"\
+    					            download="console.txt" id="down-cons" title="Download console text"\
+    							class="btn btn-sm btn-default pull-right m5">\
+    							<span class="glyphicon glyphicon-download-alt"></span>\
+    						</a>'
+                })
+            }).save();
 
         // init console and editor
-        initTools(editor, onEditorUpdate, santojon.username, editor.console);
+        initTools(editor, onEditorUpdate, currentUser.username, editor.console);
 
         // set funcion of 'show code' button
         document.getElementById('btn-bhdr-doc').onclick = function() {
@@ -104,7 +102,7 @@ pages.Sandbox = function(params) {
         // set save button action
         document.getElementById('btn-save').onclick = function() {
             var me = document.getElementById('btn-save');
-            saveFile(editor.text, 'santojon', 'code', me);
+            saveFile(editor.text, currentUser.username, 'code', me);
         };
 
         // set clear editor button action
@@ -112,7 +110,7 @@ pages.Sandbox = function(params) {
             document.getElementById('btn-clr-ed').disabled = true;
             editor.isClean = true;
             editor.flask = new CodeFlask();
-            initTools(editor, onEditorUpdate, santojon.username);
+            initTools(editor, onEditorUpdate, currentUser.username);
         };
 
         // set funcion of 'expand' button
@@ -164,14 +162,14 @@ pages.Sandbox = function(params) {
         setPinning(editor.console);
 
         // set data saving for console
-        setConsoleDataSaving(editor.console, santojon.username);
-
-        // grant all is visible
-        unhideAll();
+        setConsoleDataSaving(editor.console, currentUser.username);
 
         // but hide main lib code and instructions (and loader)
         document.getElementById('bhdr-container').hidden = true;
         document.getElementById('i-container').hidden = true;
         document.getElementById('loader').hidden = true;
+
+        // grant all is visible
+        document.getElementById('Sandbox').classList.remove('hidden');
     }
 };

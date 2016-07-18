@@ -1,11 +1,11 @@
 // Create new class from Bwf definition
 classLoader.create('Editor: {\
             name: string,\
+            user: object,\
 		    elem: string,\
 		    flask: object,\
 		    isFull: boolean,\
 		    isClean: boolean,\
-		    show: boolean,\
 		    text: string,\
 		    console: object\
         }');
@@ -21,8 +21,12 @@ Editor.prototype.init = function(lang, onUpdate, params) {
         });
     }
 
-    if (ed.text && ed.text !== '') {
-        document.getElementById(ed.elem.substr(1)).innerHTML = ed.text;
+    if (ed.isClean) {
+        document.getElementById(ed.elem.substr(1)).innerHTML = '';
+    } else {
+        if (ed.text) {
+            document.getElementById(ed.elem.substr(1)).innerHTML = ed.text;
+        }
     }
 
     if (lang) {
@@ -31,7 +35,7 @@ Editor.prototype.init = function(lang, onUpdate, params) {
 
     if (onUpdate) {
         ed.flask.onUpdate(function(code) {
-            onUpdate(code);
+            onUpdate(code, params.user);
         });
     }
 };

@@ -46,7 +46,7 @@ with (
                         user: User.find({ username: usr }),
                         isFull: editor.isFull,
                         isClean: editor.isClean,
-                        text: editor.text || defCode.asString()
+                        text: (editor.isClean ? '' : editor.text) || defCode.asString()
                     }
                 );
 
@@ -55,6 +55,8 @@ with (
                     'data:application/octet-stream;charset=utf-8,'
                         + encodeURIComponent(defCode.asString());
             }
+
+            dump(dataPool.exportAs('json'));
         },
         /**
          * Do when editor updates
