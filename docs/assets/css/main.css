@@ -1,0 +1,20 @@
+/* panels sizes*/
+.panel.panel-default {
+	overflow: hidden !important;
+	margin-bottom: 5px !important;
+}
+
+.panel.panel-default .panel-body {
+	height: 413px;
+	overflow: auto !important;
+}
+
+/* instructions specific */
+#i-sand {
+	height: 135px !important;
+}
+
+/* editor specific */
+#editor {
+	overflow: hidden !important;
+}
