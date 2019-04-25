@@ -1,0 +1,9 @@
+Editor: {
+    name: string,
+    elem: string,
+    flask: object,
+    isFull: boolean,
+    isClean: boolean,
+    text: string,
+    console: object
+}

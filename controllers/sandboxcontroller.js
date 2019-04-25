@@ -1,92 +1,77 @@
-with (
-    Base.merge(
+// 'Imports'
+with(
+    Sgfd.Base.merge(
         SandConsoleService,
-        SandboxService,
-        EditorService,
-        PhpbridgeService
+        EditorService
     )
 ) {
-    var SandboxController = {
-        /**
-         * Responsible to initialize and fill some data in page
-         */
-        initScreen: function(lang) {
-            // setup Bhdr code visualization
-            document.getElementById('bhdr-text').innerHTML =
-                '<pre class="line-numbers"><code class="language-'
-                    + (lang || 'js') + '">' + Bhdr + '</code></pre>';
-
-            // Sandbox prop names
-            document.getElementById('i-sand').innerHTML =
-                    new Sandbox({
-                        string: 's',
-                        number: 0,
-                        object: new Object(),
-                        list: [],
-                        boolean: true,
-                        function: function() {}
-                    }).getProps();
-
-            // and highlight it all
-            Prism.highlightAll();
-        },
+    /**
+     * Controller responsible to link Sandbox view to services
+     */
+    var SandboxController = new Sgfd.Controller({
+        metaName: 'SandboxController',
         /**
          * Initialize editor and console
+         * @param {required} editor: the editor to initialyze
+         * @param {required} doOnUpdate: editor update function
+         * @param {optional} sandConsole: the editor console to initialyze
          */
-        initTools: function(editor, doOnUpdate, usr, sandConsole) {
+        initTools: (editor, doOnUpdate, sandConsole) => {
             // init console
-            if (sandConsole) sandConsole.init();
+            if (sandConsole) sandConsole.init()
 
             // init editor
             if (editor && doOnUpdate) {
                 editor.init(
                     'javascript',
-                    doOnUpdate,
-                    {
-                        user: User.find({ username: usr }),
+                    doOnUpdate, {
                         isFull: editor.isFull,
                         isClean: editor.isClean,
-                        text: (editor.isClean ? '' : editor.text) || defCode.asString()
+                        text: (editor.isClean ? '' : ((editor.text != '') ? editor.text : defCode.asString()))
                     }
-                );
+                )
 
                 // add code to download
                 document.getElementById('btn-my').href =
-                    'data:application/octet-stream;charset=utf-8,'
-                        + encodeURIComponent(defCode.asString());
+                    'data:application/octet-streamcharset=utf-8,' +
+                    encodeURIComponent(defCode.asString())
             }
-
-            dump(dataPool.exportAs('json'));
         },
         /**
          * Do when editor updates
+         * @param {required} code: code to update in the editor
          */
-        onEditorUpdate: function(code, usr) {
-            doOnUpdate(Editor.find({ user: usr }), code, usr);
+        onEditorUpdate: (code) => {
+            doOnEditorUpdate(Editor.get(1), code)
         },
         /**
          * Set the clear console button action
+         * @param {required} cons: the console to clear
          */
-        setClearing: function(cons) {
-            setConsoleClearing(cons);
+        setClearing: (cons) => {
+            setConsoleClearing(cons)
         },
         /**
          * Set the pin console button action
+         * @param {required} cons: the console to pin
          */
-        setPinning: function(cons) {
-            setConsolePinning(cons);
+        setPinning: (cons) => {
+            setConsolePinning(cons)
         },
         /**
-         * Set data saving for console
+         * Set the 'fullscreeen' buttons action
+         * @param {required} editor: the editor to enlarge to fullscreen
          */
-        setConsoleDataSaving: function(cons, usr) {
-            setConsoleDataSaving(cons, usr);
-        },
-        /**
-         * Save to server via PHP
-         */
-        saveFile: function(code, usr, type, bt) {
-            saveFile(code, usr, type, bt);
+        setEnlarge: (editor) => {
+            // set funcion of 'expand' button of the editor
+            document.getElementById('btn-full').onclick = function () {
+                setEditorToFullscreen(editor)
+            }
+
+            // set funcion of 'expand' button of the info panel
+            document.getElementById('btn-full-i').onclick = function () {
+                setEditorToFullscreen(editor)
+            }
         }
-    };
+    })
 }

@@ -5,8 +5,8 @@
 }
 
 .panel.panel-default .panel-body {
-	height: 390px;
-    overflow: auto !important;
+	height: 413px;
+	overflow: auto !important;
 }
 
 /* instructions specific */
@@ -16,10 +16,5 @@
 
 /* editor specific */
 #editor {
-    overflow: hidden !important;
-}
-
-/* info texts height */
-#i-text, #bhdr-text {
-	height: 100%;
+	overflow: hidden !important;
 }

@@ -1,0 +1,10 @@
+SandConsole: {
+    name: string,
+    elem: object,
+    isPinned: boolean,
+    isClean: boolean,
+    text: string,
+    cleanBtn: string,
+    pinBtn: string,
+    downloadBtn: string
+}

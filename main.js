@@ -1,5 +1,4 @@
 /**
  * The main page
  */
-
-pages.Login();
+pages.Sandbox()

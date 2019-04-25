@@ -1,34 +1,11 @@
 // Map class to 'database'
-dataPool.map(User);
-dataPool.map(Sandbox);
-dataPool.map(Editor);
-dataPool.map(SandConsole);
+dataPool.map(
+    Editor,
+    SandConsole
+)
 
-
-
-/**
- * Map paths to bridges
- */
-
-// PHP bridge
-var Php_bridge = {
-    type: 'php',
-    base: 'data/php_bridge',
-    paths: {
-        save: 'save',
-        dump: 'dump',
-        getDb: 'getDb'
-    },
-    bridgeTo: function(to) {
-        with (Php_bridge) {
-            return base + '/' + paths[to] + '.' + type;
-        }
-    }
-};
-
-
-/**
- * Import existent databases
- */
-
-PhpbridgeService.getDb();
+// used to inter-object casting
+Loki.lokify(
+    Editor,
+    SandConsole
+)

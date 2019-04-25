@@ -1,175 +1,94 @@
-pages.Sandbox = function(params) {
+/**
+ * The behaviour description for Sandbox page
+ * @param params: params object used to load different sandbox things
+ */
+pages.Sandbox = (params) => {
     // Get all needed scopes (another js objects like controllers, services etc.)
-    with (SandboxController) {
-        // hide All elements in screen
-        Object.keys(pages).forEach(function(page) {
-            document.getElementById(page).classList.add('hidden');
-        });
+    with(SandboxController) {
+        // initialyze code highlighting
+        Prism.highlightAll()
 
-        // get current user
-        var currentUser = params.user;
-
-        // initialyze screen
-        initScreen();
-
-        // the editor
-        var editor = Editor.find({ user: currentUser }) ||
-            new Editor({
-                user: currentUser,
-                name: currentUser.username + '-defaultEditor',
-                elem: '#editor',
-                flask: new CodeFlask(),
-                isFull: false,
-                isClean: false,
-                console: new SandConsole({
-                    name: currentUser.username + '-defaultConsole',
-                    elem: 'console',
-                    isPinned: false,
-                    isClean: true,
-                    text: 'Runtime console (press any key in editor to run).',
-                    cleanBtn: '\
-                        <button id="clr-cons" class="btn btn-sm btn-default pull-right m5" title="Clear console">\
-        						<span class="glyphicon glyphicon-erase"></span>\
+        // instantiating the editor
+        var editor = new Editor({
+            name: 'defaultEditor',
+            elem: '#editor',
+            flask: new CodeFlask(),
+            isFull: false,
+            isClean: false,
+            console: new SandConsole({
+                name: 'defaultConsole',
+                elem: 'console',
+                isPinned: false,
+                isClean: true,
+                text: __('Runtime console (press any key in editor to run).'),
+                cleanBtn: '\
+                        <button id="clr-cons" class="btn btn-sm btn-default pull-right m5" title="' + __('Clear console') + '">\
+        						<span class="fa fa-trash"></span>\
         					</button>',
-                    pinBtn: '<button id="pin-cons" class="btn btn-sm btn-default pull-right m5" title="Pin console">\
+                pinBtn: '<button id="pin-cons" class="btn btn-sm btn-default pull-right m5" title="' + __('Pin console') + '">\
         						<span class="glyphicon glyphicon-pushpin"></span>\
         					</button>',
-        			saveBtn: '<button id="save-cons" title="Save console text to server"\
-    							class="btn btn-sm btn-default pull-right m5">\
-    							<span class="fa fa-floppy-o"></span>\
-    						</button>',
-    				downloadBtn: '<a href="data:application/octet-stream;charset=utf-8,"\
-    					            download="console.txt" id="down-cons" title="Download console text"\
+                downloadBtn: '<a href="data:application/octet-streamcharset=utf-8,"\
+    					            download="console.txt" id="down-cons" title="' + __('Download console text') + '"\
     							class="btn btn-sm btn-default pull-right m5">\
     							<span class="glyphicon glyphicon-download-alt"></span>\
     						</a>'
-                })
-            }).save();
+            })
+        }).save()
 
         // init console and editor
-        initTools(editor, onEditorUpdate, currentUser.username, editor.console);
-
-        // set funcion of 'show code' button
-        document.getElementById('btn-bhdr-doc').onclick = function() {
-            var bhdrDiv = document.getElementById('bhdr-container');
-            var me = document.getElementById('btn-bhdr-doc');
-
-            var i = document.getElementById('i-container');
-            var ed = document.getElementById('ed');
-
-            if (!i.hidden) {
-                document.getElementById('btn-doc').onclick();
-            }
-
-            if (bhdrDiv.hidden) {
-                ed.hidden = true;
-
-                bhdrDiv.hidden = false;
-                me.title = 'Hide Bhdr code';
-            } else {
-                ed.hidden = false;
-
-                bhdrDiv.hidden = true;
-                me.title = 'Show Bhdr code';
-            }
-        };
+        initTools(editor, onEditorUpdate, editor.console)
 
         // set funcion of 'instructions' button
-        document.getElementById('btn-doc').onclick = function() {
-            var iDiv = document.getElementById('i-container');
-            var me = document.getElementById('btn-doc');
+        document.getElementById('btn-doc').onclick = function () {
+            // info div
+            var iDiv = document.getElementById('i-container')
 
-            var bhdrDiv = document.getElementById('bhdr-container');
-            var ed = document.getElementById('ed');
+            // this button
+            var me = document.getElementById('btn-doc')
 
-            if (!bhdrDiv.hidden) {
-                document.getElementById('btn-bhdr-doc').onclick();
-            }
+            // editor div
+            var ed = document.getElementById('ed')
 
+            // show instructions and hide editor
             if (iDiv.hidden) {
-                ed.hidden = true;
+                ed.hidden = true
 
-                iDiv.hidden = false;
-                me.title = 'Hide Instructions';
+                iDiv.hidden = false
+                me.title = __('Hide Instructions')
             } else {
-                ed.hidden = false;
+                // show editor and hide instructions
+                ed.hidden = false
 
-                iDiv.hidden = true;
-                me.title = 'Show Instructions';
+                iDiv.hidden = true
+                me.title = __('Show Instructions')
             }
-        };
-
-        // set save button action
-        document.getElementById('btn-save').onclick = function() {
-            var me = document.getElementById('btn-save');
-            saveFile(editor.text, currentUser.username, 'code', me);
-        };
+        }
 
         // set clear editor button action
-        document.getElementById('btn-clr-ed').onclick = function() {
-            document.getElementById('btn-clr-ed').disabled = true;
-            editor.isClean = true;
-            editor.flask = new CodeFlask();
-            initTools(editor, onEditorUpdate, currentUser.username);
-        };
+        document.getElementById('btn-clr-ed').onclick = function () {
+            // disable button after clear
+            document.getElementById('btn-clr-ed').disabled = true
 
-        // set funcion of 'expand' button
-        document.getElementById('btn-full').onclick = function() {
-            var me = document.getElementById('btn-full');
-            var h = document.getElementById('header');
-            var con = document.getElementById('content');
+            // set editor to clean
+            editor.isClean = true
 
-            var ed = document.getElementById(editor.elem.substr(1));
-            var i = document.getElementById('i-text');
-            var b = document.getElementById('bhdr-text');
+            // reset the editor and re-initialyze it
+            editor.flask = new CodeFlask()
+            initTools(editor, onEditorUpdate)
+        }
 
-            // if is fullscreen
-            if (editor.isFull) {
-                h.classList.remove('full');
-                con.classList.remove('full');
-
-                me.title = 'Expand panels';
-                me.innerHTML = '<span class="glyphicon glyphicon-resize-full"></span>';
-
-                ed.style.height = '390px';
-                i.style.height = '390px';
-                b.style.height = '390px';
-            } else {
-                // otherwise
-                h.classList.add('full');
-                con.classList.add('full');
-
-                me.title = 'Shrink panels';
-                me.innerHTML = '<span class="glyphicon glyphicon-resize-small"></span>';
-
-                var newH = (con.offsetHeight - 48).toString() + 'px';
-                ed.style.height = newH;
-                i.style.height = newH;
-                b.style.height = newH;
-            }
-
-            editor.isFull = !editor.isFull;
-        };
-
-        // test
-        document.getElementById('btn-full').onclick();
-        document.getElementById('btn-full').onclick();
+        // set function of 'fullscreen' buttons
+        setEnlarge(editor)
 
         // set funcion of 'clear console' button
-        setClearing(editor.console);
+        setClearing(editor.console)
 
-        // set funcion of 'clear console' button
-        setPinning(editor.console);
+        // set funcion of 'pin console' button
+        setPinning(editor.console)
 
-        // set data saving for console
-        setConsoleDataSaving(editor.console, currentUser.username);
-
-        // but hide main lib code and instructions (and loader)
-        document.getElementById('bhdr-container').hidden = true;
-        document.getElementById('i-container').hidden = true;
-        document.getElementById('loader').hidden = true;
-
-        // grant all is visible
-        document.getElementById('Sandbox').classList.remove('hidden');
+        // hide main instructions (and loader)
+        document.getElementById('i-container').hidden = true
+        document.getElementById('loader').hidden = true
     }
-};
+}

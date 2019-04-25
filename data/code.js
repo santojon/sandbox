@@ -2,31 +2,80 @@
  * Example function (code inside as with right aling please!)
  */
 function defCode() {
-// this is an inline comment.
-var pool = new Bhdr();
+    /**
+     * Class to represent Pokémon
+     */
+    class Pokemon {
+        constructor(o) {
+            this.name = o.name
+            this.number = o.number
+        }
+    }
 
-/**
- * This is a comment
- * @param param: this is aparam in comment
- */
-function mapAndShowSandbox() {
-    pool.map(Sandbox);
-    new Sandbox({ string: 'test' }).save();
+    /**
+     * Class that represents the Pikachu extending Pokémon class
+     */
+    class Pikachu extends Pokemon {
+        constructor() {
+            super({
+                name: 'Pikachu',
+                number: 25
+            })
+        }
+    }
 
-    return 'code from user (last line): &ltb&gt&ltsmall&gt&ltcode&gt' + pool.exportAs('json')  + '&lt/code&gt&lt/small&gt&lt/b&gt';
-}
+    // This is a poll to simulate database and represent Pokédex.
+    var pokedex = new Bhdr()
 
-console.log('info.');
-console.warn('warning!');
-console.error('error!!!');
-mapAndShowSandbox();
+    /**
+     * This function tests the Pokémon structure created above.
+     */
+    function fillAndShowPokedex() {
+        // map Pokémon to Pokédex
+        pokedex.map(Pokemon)
+
+        // create a few Pokémon
+        pokemon = [{
+                name: 'Charmander',
+                number: 4
+            },
+            {
+                name: 'Bulbasaur',
+                number: 1
+            },
+            {
+                name: 'Squirtle',
+                number: 7
+            }
+        ]
+        pokemon.forEach((p) => {
+            new Pokemon({
+                name: p.name,
+                number: p.number
+            }).save()
+        })
+
+        // create a pikachu
+        new Pikachu().save()
+
+        // show all Pokémon in your Pokédex
+        return 'All Pokémon in Pokédex: &ltb&gt&ltsmall&gt&ltcode&gt' +
+            Pokemon.findAll().orderBy('number', 'desc').map((p) => {
+                return p.name + '(' + p.number + ')'
+            }) + '&lt/code&gt&lt/small&gt&lt/b&gt'
+    }
+
+    console.log('info.')
+    console.warn('warning!')
+    console.error('error!!!')
+    fillAndShowPokedex()
 }
 
 /**
  * Used to get only te code of internal part of function
  */
-defCode.asString = function( ) {
+defCode.asString = function () {
     return defCode.toString()
         .replace(/function defCode\(\) {\n/g, '')
-            .replace(/mapAndShowSandbox\(\);\n}/g, 'mapAndShowSandbox\(\);');
-};
+        .replace(/fillAndShowPokedex\(\)\n}/g, 'fillAndShowPokedex\(\)')
+}
