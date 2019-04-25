@@ -17,8 +17,8 @@
 
 	<!-- App init -->
 	<script type="text/javascript">
-		// load custon file
-		Sgfd.Base.loadCustomFile('templates/pages/_sandbox', 'frgg', () => {
+		// Load Page template (templates are not supported for autoload by Sgfd yet)
+		Sgfd.Base.progressiveLoad('templates/pages/_sandbox.frgg', Sgfd.Base.loadCustomFile, () => {
 			// Loads all needed things to run app. It need 'sgfd.js' loaded to work
 			new Sgfd('conf.js').load()
 		})
