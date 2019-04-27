@@ -42,6 +42,7 @@ var appConfig = {
         pageLoader: 'Frgg',
         session: true,
         bwfDomain: true,
+        templates: true,
         bootstrap: false,
         debug: {
             controllers: true,
