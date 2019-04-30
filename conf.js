@@ -40,6 +40,7 @@ var appConfig = {
         dataPool: 'Bhdr',
         classLoader: 'Bwf',
         pageLoader: 'Frgg',
+        templates: true,
         session: true,
         bwfDomain: true,
         bootstrap: false,
