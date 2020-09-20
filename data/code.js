@@ -36,17 +36,17 @@ function defCode() {
 
         // create a few Pokémon
         pokemon = [{
-                name: 'Charmander',
-                number: 4
-            },
-            {
-                name: 'Bulbasaur',
-                number: 1
-            },
-            {
-                name: 'Squirtle',
-                number: 7
-            }
+            name: 'Charmander',
+            number: 4
+        },
+        {
+            name: 'Bulbasaur',
+            number: 1
+        },
+        {
+            name: 'Squirtle',
+            number: 7
+        }
         ]
         pokemon.forEach((p) => {
             new Pokemon({
@@ -76,6 +76,7 @@ function defCode() {
  */
 defCode.asString = function () {
     return defCode.toString()
+        .replace(/\t/g, '')
         .replace(/function defCode\(\) {\n/g, '')
         .replace(/fillAndShowPokedex\(\)\n}/g, 'fillAndShowPokedex\(\)')
 }

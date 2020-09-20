@@ -15,11 +15,22 @@
 	color: aqua !important;
 }
 
+#dragbar{
+   background-color:lightgrey;
+   height:5px;
+   align-self: center;
+   width: 5%;
+   margin-bottom: -5px;
+   z-index: 10;
+   cursor: row-resize;
+}
+
 #console {
-	height: 140px !important;
+	min-height: 140px;
 	background-color: black !important;
 	color: white !important;
 	overflow: auto;
+	resize: vertical;
 	width: auto !important;
 }
 

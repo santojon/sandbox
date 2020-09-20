@@ -1,6 +1,6 @@
 <!-- Here is the code loaded in all user related pages like headers, menus etc -->
-<div id="sandbox" class="main container">
-    <div id="Sandbox" class="box" hidden="true">
+<div id="sandbox-container" class="main container">
+    <div id="sandbox" class="box" hidden="true">
         <div id="header" class="header container">
             <h2 id="title">
                 __('Libs Sandbox')
@@ -11,7 +11,8 @@
 
             <h5>
                 __('Send reports, errors, questions and issues to')
-                <a title="mailto:santojon5@gmail.com" href="mailto:santojon5@gmail.com?Subject=Bhdr%20test%20report">
+                <a title="mailto:santojon5@gmail.com"
+                    href="mailto:santojon5@gmail.com?Subject=Libs%20Sandbox%20test%20report">
                     Jonathan Santos
                 </a><code>[__('add your code, please!')]</code>.
             </h5>
@@ -82,6 +83,7 @@ console.error()</code>
         </div>
 
         <!-- Console -->
+        <div id="dragbar"></div>
         <div class="container">
             <div id="console" class="footer form-control" disabled="true"></div>
         </div>
