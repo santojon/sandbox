@@ -33,7 +33,7 @@
                 </div>
                 <div id="i-text" class="panel-body">
                     <h4>
-            __('Here we have full usage of javascript, so you can write code and see it running in real time').
+                        __('Here we have full usage of javascript, so you can write code and see it running in real time').
                     </h4>
                     <h5>
                         __('Feel free to use the console functions related to log'):

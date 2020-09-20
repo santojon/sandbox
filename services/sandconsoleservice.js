@@ -93,10 +93,7 @@ var SandConsoleService = new Sgfd.Service({
      * @param {required} cons: the console to setup
      */
     setConsolePinning: (cons) => {
-        // pin console button action
-        document.getElementById('pin-cons').onclick = function () {
-            var pinBt = this
-
+        var pinFunction = () => {
             // unpin it
             if (cons.isPinned) {
                 document.getElementById(cons.elem).classList.remove('console-full')
@@ -109,8 +106,27 @@ var SandConsoleService = new Sgfd.Service({
             cons.isPinned = !cons.isPinned
 
             // update console pinning in screen
-            SandConsoleService.updatePinBtn(pinBt, cons)
+            SandConsoleService.updatePinBtn(document.getElementById('pin-cons'), cons)
         }
+
+        var dragbarFunction = () => {
+            if (cons.isOverlay) {
+                document.getElementById(cons.elem).classList.remove('overlay')
+            } else {
+                document.getElementById(cons.elem).classList.add('overlay')
+            }
+            cons.isOverlay = !cons.isOverlay
+
+            // update console pinning in screen
+            SandConsoleService.updatePinBtn(document.getElementById('pin-cons'), cons)
+
+            // update console draging in screen
+            SandConsoleService.updateDragbar(document.getElementById('dragbar'), cons)
+        }
+
+        // pin console button and dragbar action
+        document.getElementById('pin-cons').onclick = pinFunction
+        document.getElementById('dragbar').onclick = dragbarFunction
     },
     /**
      * Update 'pin console' button status
@@ -130,6 +146,20 @@ var SandConsoleService = new Sgfd.Service({
             pinBt.classList.add('btn-default')
             pinBt.innerHTML = '<span class="glyphicon glyphicon-pushpin"></span>'
             pinBt.title = __('Pin console')
+        }
+    },
+
+    /**
+     * Update 'dragbar' status
+     * @param {required} dragbar: the dragbar on screen
+     * @param {required} cons: console to pin
+     */
+    updateDragbar: (dragbar, cons) => {
+        // change dragbar location
+        if (cons.isOverlay) {
+            dragbar.classList.add('dragbar-overlay')
+        } else {
+            dragbar.classList.remove('dragbar-overlay')
         }
     }
 })

@@ -31,10 +31,26 @@
 	color: white !important;
 	overflow: auto;
 	resize: vertical;
-	width: auto !important;
+	width: auto;
 }
 
 .console-full {
 	margin-left: calc(50% - 50vw);
 	margin-right: calc(50% - 50vw);
+	height: 100vh;
+}
+
+.overlay {
+	position:fixed;
+	width: 100vw !important;
+	top:0;
+	left: 0;
+	height: 100vh;
+    z-index:100;
+}
+
+.dragbar-overlay {
+	position:fixed;
+	top:0;
+    z-index:110 !important;
 }

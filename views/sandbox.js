@@ -19,6 +19,7 @@ pages.Sandbox = (params) => {
                 name: 'defaultConsole',
                 elem: 'console',
                 isPinned: false,
+                isOverlay: false,
                 isClean: true,
                 text: __('Runtime console (press any key in editor to run).'),
                 cleanBtn: '\

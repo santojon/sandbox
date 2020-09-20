@@ -2,6 +2,7 @@ SandConsole: {
     name: string,
     elem: object,
     isPinned: boolean,
+    isOverlay: boolean,
     isClean: boolean,
     text: string,
     cleanBtn: string,
