@@ -33,8 +33,7 @@
                 </div>
                 <div id="i-text" class="panel-body">
                     <h4>
-                        __('Here we have full usage of javascript, so you can write code and see it running in real
-                        time').
+            __('Here we have full usage of javascript, so you can write code and see it running in real time').
                     </h4>
                     <h5>
                         __('Feel free to use the console functions related to log'):
@@ -49,8 +48,8 @@ console.warn()
 console.error()</code>
 							</pre>
                     <h5>
-                        __('Use') console.<b>*</b> __('functions to log data to console with') <code>100%</code> __('of
-                        precision').
+                        __('Use') console.<b>*</b> __('functions to log data to console with') <code>100%</code>
+                        __('of precision').
                         <p><small>
                                 (__('another forms can fail to log the data to console'))
                             </small></p>
@@ -84,7 +83,7 @@ console.error()</code>
 
         <!-- Console -->
         <div id="dragbar"></div>
-        <div class="container">
+        <div id="console-container" class="container">
             <div id="console" class="footer form-control" disabled="true"></div>
         </div>
     </div>

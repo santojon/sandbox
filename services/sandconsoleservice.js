@@ -9,7 +9,7 @@ var SandConsoleService = new Sgfd.Service({
      * @param {required} cons: the console to show the evaluation
      */
     updateConsole: (code, cons) => {
-        with(SandConsoleService) {
+        with (SandConsoleService) {
             // clean the console
             cleanConsole(cons)
 

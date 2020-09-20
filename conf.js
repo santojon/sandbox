@@ -4,7 +4,6 @@
 var appConfig = {
     front: {
         styles: ['measures', 'main', 'style', 'console'],
-        scripts: ['console-resize'],
         externalStyles: [
             'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
             'https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css',
@@ -49,6 +48,6 @@ var appConfig = {
             services: true,
             bridges: true
         },
-        production: false
+        production: true
     }
 }

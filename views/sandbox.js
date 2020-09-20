@@ -4,7 +4,7 @@
  */
 pages.Sandbox = (params) => {
     // Get all needed scopes (another js objects like controllers, services etc.)
-    with(SandboxController) {
+    with (SandboxController) {
         // initialyze code highlighting
         Prism.highlightAll()
 
@@ -89,6 +89,6 @@ pages.Sandbox = (params) => {
 
         // hide main instructions (and loader)
         document.getElementById('i-container').hidden = true
-        document.getElementById('loader').hidden = true
+        // document.getElementById('loader').hidden = true
     }
 }

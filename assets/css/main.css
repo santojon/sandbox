@@ -14,6 +14,10 @@
 	height: 135px !important;
 }
 
+#i-text {
+	height: 305px !important;
+}
+
 /* editor specific */
 #editor {
 	overflow: hidden !important;
