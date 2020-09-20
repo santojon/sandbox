@@ -42,5 +42,7 @@ var _language = {
     'Clear console': 'Limpar console',
     'Pin console': 'Fixar console',
     'Unpin console': 'Desfixar console',
+    'Enlarge console': 'Ampliar console',
+    'Reduce console': 'Reduzir console',
     'Download console text': 'Baixar texto do console'
 }

@@ -82,7 +82,7 @@ console.error()</code>
         </div>
 
         <!-- Console -->
-        <div id="dragbar"></div>
+        <div id="dragbar" title="__('Enlarge console')"></div>
         <div id="console-container" class="container">
             <div id="console" class="footer form-control" disabled="true"></div>
         </div>

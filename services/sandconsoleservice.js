@@ -158,8 +158,10 @@ var SandConsoleService = new Sgfd.Service({
         // change dragbar location
         if (cons.isOverlay) {
             dragbar.classList.add('dragbar-overlay')
+            dragbar.title = __('Reduce console')
         } else {
             dragbar.classList.remove('dragbar-overlay')
+            dragbar.title = __('Enlarge console')
         }
     }
 })
