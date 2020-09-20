@@ -5,5 +5,5 @@ Editor: {
     isFull: boolean,
     isClean: boolean,
     text: string,
-    console: object
+    console: SandConsole
 }

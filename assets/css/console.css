@@ -37,7 +37,6 @@
 .console-full {
 	margin-left: calc(50% - 50vw);
 	margin-right: calc(50% - 50vw);
-	height: 100vh;
 }
 
 .overlay {
@@ -45,7 +44,7 @@
 	width: 100vw !important;
 	top:0;
 	left: 0;
-	height: 100vh;
+	height: 100vh !important;
     z-index:100;
 }
 
