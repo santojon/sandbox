@@ -22,7 +22,7 @@
    width: 5%;
    margin-bottom: -5px;
    z-index: 10;
-   cursor: row-resize;
+   cursor: pointer;
 }
 
 #console {
@@ -37,19 +37,4 @@
 .console-full {
 	margin-left: calc(50% - 50vw);
 	margin-right: calc(50% - 50vw);
-}
-
-.overlay {
-	position:fixed;
-	width: 100vw !important;
-	top:0;
-	left: 0;
-	height: 100vh !important;
-    z-index:100;
-}
-
-.dragbar-overlay {
-	position:fixed;
-	top:0;
-    z-index:110 !important;
 }

@@ -39,3 +39,18 @@ body {
   margin-left: calc(50% - 49.8vw);
   margin-right: calc(50% - 49.8vw);
 }
+
+.overlay {
+	position:fixed;
+	width: 100vw !important;
+	top:0;
+	left: 0;
+	height: 100vh !important;
+  z-index:100;
+}
+
+.dragbar-overlay {
+	position:fixed;
+	top:0;
+  z-index:110 !important;
+}

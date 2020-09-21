@@ -77,6 +77,7 @@ console.error()</code>
                         </a>
                     </b>
                 </div>
+                <div id="ed-dragbar" title="__('Enlarge editor')"></div>
                 <div id="editor" class="panel-body"></div>
             </div>
         </div>

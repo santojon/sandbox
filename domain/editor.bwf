@@ -3,6 +3,7 @@ Editor: {
     elem: string,
     flask: object,
     isFull: boolean,
+    isOverlay: boolean,
     isClean: boolean,
     text: string,
     console: SandConsole

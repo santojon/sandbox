@@ -1,9 +1,9 @@
 // 'Imports'
-with(
-    Sgfd.Base.merge(
-        SandConsoleService,
-        EditorService
-    )
+with (
+Sgfd.Base.merge(
+    SandConsoleService,
+    EditorService
+)
 ) {
     /**
      * Controller responsible to link Sandbox view to services
@@ -25,10 +25,10 @@ with(
                 editor.init(
                     'javascript',
                     doOnUpdate, {
-                        isFull: editor.isFull,
-                        isClean: editor.isClean,
-                        text: (editor.isClean ? '' : ((editor.text != '') ? editor.text : defCode.asString()))
-                    }
+                    isFull: editor.isFull,
+                    isClean: editor.isClean,
+                    text: (editor.isClean ? '' : ((editor.text != '') ? editor.text : defCode.asString()))
+                }
                 )
 
                 // add code to download
@@ -71,6 +71,35 @@ with(
             // set funcion of 'expand' button of the info panel
             document.getElementById('btn-full-i').onclick = function () {
                 setEditorToFullscreen(editor)
+            }
+
+            var dragbarFunction = () => {
+                if (editor.isOverlay) {
+                    $(editor.elem).removeClass('overlay')
+                } else {
+                    $(editor.elem).addClass('overlay')
+                }
+                editor.isOverlay = !editor.isOverlay
+
+                SandboxController.updateDragbar(document.getElementById('ed-dragbar'), editor)
+            }
+            document.getElementById('ed-dragbar').onclick = dragbarFunction
+        },
+
+        /**
+         * Update 'dragbar' status
+         * @param {required} dragbar: the dragbar on screen
+         * @param {required} editor: editor to pin
+         */
+        updateDragbar: (dragbar, editor) => {
+            console.log(dragbar)
+            // change dragbar location
+            if (editor.isOverlay) {
+                dragbar.classList.add('dragbar-overlay')
+                dragbar.title = __('Reduce editor')
+            } else {
+                dragbar.classList.remove('dragbar-overlay')
+                dragbar.title = __('Enlarge editor')
             }
         }
     })

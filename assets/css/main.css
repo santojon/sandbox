@@ -21,8 +21,33 @@
 /* editor specific */
 #editor {
 	overflow: hidden !important;
+	background-color: white;
 }
 
 #ed {
 	resize: vertical;
+}
+
+#ed-dragbar{
+   background-color: gray;
+   height:5px;
+   align-self: center;
+   width: 5%;
+   margin-left: calc(50% - 2vw);
+   margin-right: calc(50% - 2vw);
+   margin-top: -5px;
+   z-index: 10;
+   cursor: pointer;
+}
+
+#ed-dragbar.dragbar-overlay {
+	margin-top: 0;
+	margin-bottom: -5px;
+	margin-left: calc(50% - 18vw);
+	margin-right: calc(50% - 18vw);
+}
+
+.content.full>#ed>#ed-dragbar.dragbar-overlay {
+	margin-left: calc(50% - 1.5vw) !important;
+	margin-right: calc(50% - 1.5vw) !important;
 }

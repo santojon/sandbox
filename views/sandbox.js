@@ -14,6 +14,7 @@ pages.Sandbox = (params) => {
             elem: '#editor',
             flask: new CodeFlask(),
             isFull: false,
+            isOverlay: false,
             isClean: false,
             console: new SandConsole({
                 name: 'defaultConsole',

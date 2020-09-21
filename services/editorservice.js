@@ -1,5 +1,5 @@
 // 'Imports'
-with(SandConsoleService) {
+with (SandConsoleService) {
     /**
      * Responsible to manage Editor dynamics
      */
