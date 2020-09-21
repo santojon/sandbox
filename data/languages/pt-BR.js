@@ -34,6 +34,8 @@ var _language = {
     'Download editor\'s code': 'Baixar código',
     'Expand panels': 'Expandir painéis',
     'Shrink panels': 'Encolher painéis',
+    'Enlarge editor': 'Ampliar editor',
+    'Reduce editor': 'Reduzir editor',
 
     /**
      * Console
