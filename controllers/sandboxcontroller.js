@@ -92,7 +92,6 @@ Sgfd.Base.merge(
          * @param {required} editor: editor to pin
          */
         updateDragbar: (dragbar, editor) => {
-            console.log(dragbar)
             // change dragbar location
             if (editor.isOverlay) {
                 dragbar.classList.add('dragbar-overlay')
