@@ -9,18 +9,7 @@ function defCode() {
         constructor(o) {
             this.name = o.name
             this.number = o.number
-        }
-    }
-
-    /**
-     * Class that represents the Pikachu extending Pokémon class
-     */
-    class Pikachu extends Pokemon {
-        constructor() {
-            super({
-                name: 'Pikachu',
-                number: 25
-            })
+            this.image = 'https://img.pokemondb.net/artwork/large/' + o.name + '.jpg'
         }
     }
 
@@ -30,45 +19,34 @@ function defCode() {
     /**
      * This function tests the Pokémon structure created above.
      */
-    function fillAndShowPokedex() {
+    function fillPokedex() {
         // map Pokémon to Pokédex
         pokedex.map(Pokemon)
 
         // create a few Pokémon
-        pokemon = [{
-                name: 'Charmander',
-                number: 4
-            },
-            {
-                name: 'Bulbasaur',
-                number: 1
-            },
-            {
-                name: 'Squirtle',
-                number: 7
-            }
-        ]
-        pokemon.forEach((p) => {
-            new Pokemon({
-                name: p.name,
-                number: p.number
-            }).save()
+        $.get('https://pokeapi.co/api/v2/pokemon?limit=10000', (data) => {
+            data.results.forEach((p, i) => {
+                var urlParts = p.url.split('/')
+                new Pokemon({
+                    name: p.name,
+                    number: parseInt(urlParts[urlParts.length - 2])
+                }).save()
+            })
+
+            console.log(showPokedex())
         })
-
-        // create a pikachu
-        new Pikachu().save()
-
-        // show all Pokémon in your Pokédex
-        return 'All Pokémon in Pokédex: &ltb&gt&ltsmall&gt&ltcode&gt' +
-            Pokemon.findAll().orderBy('number', 'desc').map((p) => {
-                return p.name + '(' + p.number + ')'
-            }) + '&lt/code&gt&lt/small&gt&lt/b&gt'
     }
 
-    console.log('info.')
-    console.warn('warning!')
-    console.error('error!!!')
-    fillAndShowPokedex()
+    function showPokedex() {
+        // show all Pokémon in your Pokédex
+        return 'All Pokémon in Pokédex:<br>' +
+            Pokemon.findAll().orderBy('number', 'asc').map((p) => {
+                return '&ltdiv class="well" style="width: 250px; float: left; margin: 5px"&gt&ltb style="color: black"&gt' + p.name + '(' + p.number + ')&lt/b&gt'
+                 + '&ltimg style="width: 200px; height: 200px" src="' + p.image + '"&gt&lt/div&gt'
+            }).join('')
+    }
+
+    fillPokedex()
 }
 
 /**
