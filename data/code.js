@@ -55,5 +55,5 @@ function defCode() {
 defCode.asString = function () {
     return defCode.toString()
         .replace(/function defCode\(\) {\n/g, '')
-        .replace(/fillAndShowPokedex\(\)\n}/g, 'fillPokedex\(\)')
+        .replace(/fillPokedex\(\)\n}/g, 'fillPokedex\(\)')
 }
