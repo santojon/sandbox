@@ -39,7 +39,7 @@ function defCode() {
 
     function showPokedex() {
         // show all Pokémon in your Pokédex
-        return 'All Pokémon in Pokédex:<br>' +
+        return 'All Pokémon in Pokédex:&ltb&gt' +
             Pokemon.findAll().orderBy('number', 'asc').map((p) => {
                 return '&ltdiv class="well" style="width: 250px; float: left; margin: 5px"&gt&ltb style="color: black"&gt' + p.name + '(' + p.number + ')&lt/b&gt'
                  + '&ltimg style="width: 200px; height: 200px" src="' + p.image + '"&gt&lt/div&gt'
