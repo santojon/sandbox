@@ -37,6 +37,9 @@ function fillPokedex() {
     })
 }
 
+/**
+ * Mount Pokedex UI
+ */
 function showPokedex() {
     // show all Pokémon in your Pokédex
     return 'All Pokémon in Pokédex:&ltbr&gt' +
